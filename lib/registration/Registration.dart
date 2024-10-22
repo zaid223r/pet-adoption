@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:pet_adoption/pets/PetsPage.dart';
 import 'package:pet_adoption/registration/Login.dart';
 
 class Registration extends StatefulWidget {
@@ -42,7 +43,7 @@ class _RegistrationState extends State<Registration> {
           if (type == "Back") {
             Navigator.pop(context);
           } else {
-            // Navigator.push(context, MaterialPageRoute(builder: (context) => const ));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const Petspage()));
           }
         },
       style: TextButton.styleFrom(side: BorderSide(color: mainColor),backgroundColor: altColor ),

@@ -2,8 +2,34 @@ import 'package:flutter/material.dart';
 import 'splashscreen/SplashScreen.dart';
 
 void main() {
+  runApp(const MaterialApp(home: Splashscreen()));
+}
 
-  List<Pet> pets = [
+
+//I asked chatGPT about this and made me a random data for them
+class Pet {
+  final int id;
+  final String name;
+  final String category; // e.g., dog, cat, bird
+  final String breed;
+  final String age;
+  final String healthStatus;
+  final List<String> personalityTraits;
+  final String imageUrl;
+
+  Pet({
+    required this.id,
+    required this.name,
+    required this.category,
+    required this.breed,
+    required this.age,
+    required this.healthStatus,
+    required this.personalityTraits,
+    required this.imageUrl,
+  });
+}
+
+ List<Pet> pets = [
     // Cats
     Pet(
       id: 1,
@@ -104,29 +130,11 @@ void main() {
     return pets.firstWhere((pet) => pet.id == id);
   }
 
-  runApp(const MaterialApp(home: Splashscreen()));
-}
+  // ignore: unused_element
+  List<Pet> getByCategory(String? category){
+    if(category == null) {
+      return pets.toList();
+    }
 
-
-//I asked chatGPT about this and made me a random data for them
-class Pet {
-  final int id;
-  final String name;
-  final String category; // e.g., dog, cat, bird
-  final String breed;
-  final String age;
-  final String healthStatus;
-  final List<String> personalityTraits;
-  final String imageUrl;
-
-  Pet({
-    required this.id,
-    required this.name,
-    required this.category,
-    required this.breed,
-    required this.age,
-    required this.healthStatus,
-    required this.personalityTraits,
-    required this.imageUrl,
-  });
-}
+    return pets.where((pet) => pet.category == category).toList();
+  }

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:pet_adoption/pets/PetsPage.dart';
 import 'package:pet_adoption/registration/Registration.dart';
 import 'package:pet_adoption/registration/resetPassword/EnterEmail.dart';
 
@@ -29,8 +30,8 @@ class _LoginState extends State<Login> {
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
       child: TextButton(
         onPressed: () {
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: (context) => const Registration()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Petspage()));
         },
         style: TextButton.styleFrom(
             side: const BorderSide(color: Color.fromARGB(255, 8, 9, 10)),
