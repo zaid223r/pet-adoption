@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:pet_adoption/resetPassword/Otp.dart';
+import 'package:pet_adoption/registration/resetPassword/Otp.dart';
 
 class Enteremail extends StatefulWidget {
   const Enteremail({super.key});

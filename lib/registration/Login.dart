@@ -1,7 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:pet_adoption/resetPassword/EnterEmail.dart';
+import 'package:pet_adoption/registration/Registration.dart';
+import 'package:pet_adoption/registration/resetPassword/EnterEmail.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -15,7 +16,8 @@ class _LoginState extends State<Login> {
   Widget InputField(String placeHolder) {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
-        child: TextFormField( //I found this widget after searching https://docs.flutter.dev/cookbook/forms/text-input
+        child: TextFormField(
+          //I found this widget after searching https://docs.flutter.dev/cookbook/forms/text-input
           decoration: InputDecoration(
               border: const UnderlineInputBorder(), labelText: placeHolder),
         ));
@@ -26,30 +28,50 @@ class _LoginState extends State<Login> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
       child: TextButton(
-        onPressed: () {},
-      style: TextButton.styleFrom(side: const BorderSide(color: Color.fromARGB(255, 8, 9, 10)),backgroundColor: const Color.fromARGB(255, 244, 250, 255)),
+        onPressed: () {
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => const Registration()));
+        },
+        style: TextButton.styleFrom(
+            side: const BorderSide(color: Color.fromARGB(255, 8, 9, 10)),
+            backgroundColor: const Color.fromARGB(255, 244, 250, 255)),
         child: const Text(
           "Continue",
           style: TextStyle(fontSize: 18, color: Color.fromARGB(255, 8, 9, 10)),
-        ),),
+        ),
+      ),
     );
   }
 
   // ignore: non_constant_identifier_names
-  Widget OtherButtons(String label, String otherpage){
-    return Padding(padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 24), child: Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Text(label),
-        TextButton(onPressed: (){
-          if (otherpage == "reset it here") {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> const Enteremail()));
-          } else {
-            
-          }
-        }, child: Text(otherpage,style: const TextStyle(color: Color.fromARGB(255, 244, 250, 255))),)
-      ],
-    ),);
+  Widget OtherButtons(String label, String otherpage) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 24),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(label),
+          TextButton(
+            onPressed: () {
+              if (otherpage == "reset it here") {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Enteremail()));
+              } else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Registration()));
+              }
+            },
+            child: Text(otherpage,
+                style:
+                    const TextStyle(color: Color.fromARGB(255, 244, 250, 255))),
+          )
+        ],
+      ),
+    );
   }
 
   @override
@@ -86,10 +108,9 @@ class _LoginState extends State<Login> {
                       ),
                       InputField("Enter your email"),
                       InputField("Enter your password"),
-                      ContinueButton(),
                       OtherButtons("Lost password?", "reset it here"),
+                      ContinueButton(),
                       OtherButtons("Don't have an account?", "Sign up here"),
-                      
                     ]))));
   }
 }
