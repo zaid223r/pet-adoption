@@ -15,7 +15,7 @@ class _LoginState extends State<Login> {
   Widget InputField(String placeHolder) {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
-        child: TextFormField(
+        child: TextFormField( //I found this widget after searching https://docs.flutter.dev/cookbook/forms/text-input
           decoration: InputDecoration(
               border: const UnderlineInputBorder(), labelText: placeHolder),
         ));
