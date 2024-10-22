@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:pet_adoption/main.dart';
+import 'package:pet_adoption/pets/PetDetails.dart';
 
 class Petspage extends StatefulWidget {
   late final String? category;
-  late final String activeButton ;
-  late final String type ;
+  late final String activeButton;
+  late final String type;
 
   // I learned this here https://youtu.be/l3KnuUmlr-w
   // ignore: prefer_const_constructors_in_immutables
   Petspage({
     super.key,
-    required this.category, required this.activeButton, required this.type,
+    required this.category,
+    required this.activeButton,
+    required this.type,
   });
-
 
   @override
   State<Petspage> createState() => _PetspageState();
 }
 
 class _PetspageState extends State<Petspage> {
-
-
   // ignore: non_constant_identifier_names
   Widget PaddingAll(Widget widget) {
     return Padding(
@@ -40,11 +40,14 @@ class _PetspageState extends State<Petspage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(padding: EdgeInsets.symmetric(horizontal: 18), child: Text(
-                  "Hello, hello",
-                  style: TextStyle(
-                      fontSize: 20, color: Color.fromARGB(255, 8, 9, 10)),
-                ),)
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 18),
+                  child: Text(
+                    "Hello, hello",
+                    style: TextStyle(
+                        fontSize: 20, color: Color.fromARGB(255, 8, 9, 10)),
+                  ),
+                )
               ],
             ),
             Icon(
@@ -68,7 +71,6 @@ class _PetspageState extends State<Petspage> {
               color: Color.fromARGB(255, 175, 122, 109),
             ),
           ),
-          
           const Positioned(
               bottom: -20,
               left: 0,
@@ -89,9 +91,21 @@ class _PetspageState extends State<Petspage> {
         child: TextButton(
             onPressed: () {
               if (name == "All") {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Petspage(category: null, activeButton: "All", type: "pets")));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Petspage(
+                            category: null,
+                            activeButton: "All",
+                            type: "pets")));
               } else {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Petspage(category: name.toLowerCase(), activeButton: name, type: name.toLowerCase())));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Petspage(
+                            category: name.toLowerCase(),
+                            activeButton: name,
+                            type: name.toLowerCase())));
               }
             },
             style: TextButton.styleFrom(
@@ -143,7 +157,9 @@ class _PetspageState extends State<Petspage> {
             Expanded(
                 flex: 4,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Petdetails(id: pet.id)));
+                  },
                   child: const Text(
                     "More details",
                     style: TextStyle(fontSize: 10),
@@ -166,13 +182,13 @@ class _PetspageState extends State<Petspage> {
                   AppBar(),
                   PageHeader(),
                   Row(
-            children: [
-              Button("All"),
-              Button("Cats"),
-              Button("Dogs"),
-              Button("Birds")
-            ],
-          ),
+                    children: [
+                      Button("All"),
+                      Button("Cats"),
+                      Button("Dogs"),
+                      Button("Birds")
+                    ],
+                  ),
                   Expanded(
                       child: SingleChildScrollView(
                     child: Column(
