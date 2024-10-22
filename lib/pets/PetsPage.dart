@@ -1,19 +1,24 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:pet_adoption/main.dart';
 
 class Petspage extends StatefulWidget {
-  const Petspage({super.key});
+  late final String? category;
+  late final String activeButton ;
+  late final String type ;
+
+  // I learned this here https://youtu.be/l3KnuUmlr-w
+  // ignore: prefer_const_constructors_in_immutables
+  Petspage({
+    super.key,
+    required this.category, required this.activeButton, required this.type,
+  });
+
 
   @override
   State<Petspage> createState() => _PetspageState();
 }
 
 class _PetspageState extends State<Petspage> {
-  String? category;
-  String activeButton = "All";
-  String type = "pets";
 
 
   // ignore: non_constant_identifier_names
@@ -26,30 +31,23 @@ class _PetspageState extends State<Petspage> {
 
   // ignore: non_constant_identifier_names
   Widget AppBar() {
-    Random random = Random();
-    int randomNumber = 1 + random.nextInt(3);
-
     return Container(
-        color: const Color.fromARGB(255, 2, 218, 255),
-        child: Row(
+        height: 60,
+        color: const Color.fromARGB(255, 226, 212, 186),
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image(
-                    image:
-                        AssetImage("images/splashscreen/pet$randomNumber.png"),
-                    height: 60,
-                    width: 60),
-                const Text(
-                  "Pet Adoption",
+                Padding(padding: EdgeInsets.symmetric(horizontal: 18), child: Text(
+                  "Hello, hello",
                   style: TextStyle(
                       fontSize: 20, color: Color.fromARGB(255, 8, 9, 10)),
-                )
+                ),)
               ],
             ),
-            const Icon(
+            Icon(
               Icons.settings,
               size: 32,
               color: Color.fromARGB(255, 8, 9, 10),
@@ -67,7 +65,7 @@ class _PetspageState extends State<Petspage> {
           Container(
             height: 90,
             decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 135, 137, 192),
+              color: Color.fromARGB(255, 175, 122, 109),
             ),
           ),
           
@@ -77,8 +75,8 @@ class _PetspageState extends State<Petspage> {
               right: 0,
               child: Image(
                 image: AssetImage("images/mainpage.png"),
-                height: 200,
-                width: 200,
+                height: 180,
+                width: 180,
               )),
         ],
       ),
@@ -90,35 +88,16 @@ class _PetspageState extends State<Petspage> {
     return Expanded(
         child: TextButton(
             onPressed: () {
-              switch (name) {
-                case "All":
-                  category = null;
-                  activeButton = "All";
-                  type = "pets";
-                  break;
-                case "Cats":
-                  category = "cat";
-                  activeButton = "Cats";
-                  type = activeButton;
-                  break;
-                case "Dogs":
-                  category = "dog";
-                  activeButton = "Dogs";
-                  type = activeButton;
-                  break;
-                default:
-                  category = "bird";
-                  activeButton = "Birds";
-                  type = activeButton;
-                  break;
-                
+              if (name == "All") {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Petspage(category: null, activeButton: "All", type: "pets")));
+              } else {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Petspage(category: name.toLowerCase(), activeButton: name, type: name.toLowerCase())));
               }
-              // print(activeButton);
             },
             style: TextButton.styleFrom(
-                backgroundColor: name != activeButton
-                    ? const Color.fromARGB(255, 2, 218, 255)
-                    : const Color.fromARGB(255, 135, 137, 192),
+                backgroundColor: name != widget.activeButton
+                    ? const Color.fromARGB(255, 226, 212, 186)
+                    : const Color.fromARGB(255, 175, 122, 109),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30))),
             child: Text(
@@ -178,11 +157,11 @@ class _PetspageState extends State<Petspage> {
 
   @override
   Widget build(BuildContext context) {
-    var pets = getByCategory(category);
+    var pets = getByCategory(widget.category);
     return Scaffold(
         body: SafeArea(
             child: Container(
-                color: const Color.fromARGB(255, 2, 218, 255),
+                color: const Color.fromARGB(255, 226, 212, 186),
                 child: Column(children: [
                   AppBar(),
                   PageHeader(),
@@ -199,7 +178,7 @@ class _PetspageState extends State<Petspage> {
                     child: Column(
                       children: [
                         Text(
-                          "All ${type.toLowerCase()} available",
+                          "All ${widget.type.toLowerCase()} available",
                           style: const TextStyle(fontSize: 32),
                         ),
                         for (var pet in pets) PaddingAll(PetRecord(pet)),

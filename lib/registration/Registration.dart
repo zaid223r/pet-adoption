@@ -30,11 +30,11 @@ class _RegistrationState extends State<Registration> {
     Color altColor;
 
     if (type == "Continue") {
-      mainColor = const Color.fromARGB(255, 8, 9, 10);
-      altColor = const Color.fromARGB(255, 244, 250, 255);
+      mainColor = const Color.fromARGB(255, 101, 50, 57);
+      altColor = const Color.fromARGB(255, 204, 199, 185);
     } else {
-      altColor = const Color.fromARGB(255, 8, 9, 10);
-      mainColor = const Color.fromARGB(255, 244, 250, 255);
+      altColor = const Color.fromARGB(255, 101, 50, 57);
+      mainColor = const Color.fromARGB(255, 204, 199, 185);
     }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
@@ -43,7 +43,7 @@ class _RegistrationState extends State<Registration> {
           if (type == "Back") {
             Navigator.pop(context);
           } else {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const Petspage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Petspage(category: null, activeButton: "All", type: "pets",)));
           }
         },
       style: TextButton.styleFrom(side: BorderSide(color: mainColor),backgroundColor: altColor ),
@@ -75,7 +75,7 @@ class _RegistrationState extends State<Registration> {
             },
             child: Text(otherpage,
                 style:
-                    const TextStyle(color: Color.fromARGB(255, 244, 250, 255))),
+                    const TextStyle(color: Color.fromARGB(255, 101, 50, 57))),
           )
         ],
       ),
@@ -90,7 +90,7 @@ class _RegistrationState extends State<Registration> {
     return Scaffold(
         body: SafeArea(
             child: Container(
-                color: const Color.fromARGB(255, 135, 137, 192),
+                color: const Color.fromARGB(255, 226, 212, 186),
                 height: double.infinity,
                 width: double.infinity,
                 child: Column(
@@ -110,7 +110,7 @@ class _RegistrationState extends State<Registration> {
                             "Registration",
                             style: TextStyle(
                                 fontSize: 36,
-                                color: Color.fromARGB(255, 8, 9, 10)),
+                                color: Color.fromARGB(255, 101, 50, 57)),
                           )
                         ],
                       ),

@@ -34,7 +34,7 @@ class Pet {
     Pet(
       id: 1,
       name: "Whiskers",
-      category: "cat",
+      category: "cats",
       breed: "Siamese",
       age: "2 years",
       healthStatus: "Healthy",
@@ -44,7 +44,7 @@ class Pet {
     Pet(
       id: 2,
       name: "Mittens",
-      category: "cat",
+      category: "cats",
       breed: "Maine Coon",
       age: "3 years",
       healthStatus: "Vaccinated",
@@ -54,7 +54,7 @@ class Pet {
     Pet(
       id: 3,
       name: "Shadow",
-      category: "cat",
+      category: "cats",
       breed: "Persian",
       age: "1 year",
       healthStatus: "Healthy",
@@ -65,7 +65,7 @@ class Pet {
     Pet(
       id: 4,
       name: "Buddy",
-      category: "dog",
+      category: "dogs",
       breed: "Golden Retriever",
       age: "4 years",
       healthStatus: "Vaccinated",
@@ -75,7 +75,7 @@ class Pet {
     Pet(
       id: 5,
       name: "Max",
-      category: "dog",
+      category: "dogs",
       breed: "Bulldog",
       age: "2 years",
       healthStatus: "Healthy",
@@ -85,7 +85,7 @@ class Pet {
     Pet(
       id: 6,
       name: "Bella",
-      category: "dog",
+      category: "dogs",
       breed: "Poodle",
       age: "3 years",
       healthStatus: "Vaccinated",
@@ -96,7 +96,7 @@ class Pet {
     Pet(
       id: 7,
       name: "Tweety",
-      category: "bird",
+      category: "birds",
       breed: "Canary",
       age: "6 months",
       healthStatus: "Healthy",
@@ -106,7 +106,7 @@ class Pet {
     Pet(
       id: 8,
       name: "Polly",
-      category: "bird",
+      category: "birds",
       breed: "Parrot",
       age: "2 years",
       healthStatus: "Healthy",
@@ -116,7 +116,7 @@ class Pet {
     Pet(
       id: 9,
       name: "Chirpy",
-      category: "bird",
+      category: "birds",
       breed: "Finch",
       age: "1 year",
       healthStatus: "Vaccinated",

@@ -19,27 +19,30 @@ class _OtpState extends State<Otp> {
     Color altColor;
 
     if (type == "Continue") {
-      mainColor = const Color.fromARGB(255, 8, 9, 10);
-      altColor = const Color.fromARGB(255, 244, 250, 255);
+      mainColor = const Color.fromARGB(255, 101, 50, 57);
+      altColor = const Color.fromARGB(255, 204, 199, 185);
     } else {
-      altColor = const Color.fromARGB(255, 8, 9, 10);
-      mainColor = const Color.fromARGB(255, 244, 250, 255);
+      altColor = const Color.fromARGB(255, 101, 50, 57);
+      mainColor = const Color.fromARGB(255, 204, 199, 185);
     }
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
       child: TextButton(
         onPressed: () {
           if (type == "Back") {
             Navigator.pop(context);
           } else {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const ResetPassword()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => const ResetPassword()));
           }
         },
-      style: TextButton.styleFrom(side: BorderSide(color: mainColor),backgroundColor: altColor ),
+        style: TextButton.styleFrom(
+            side: BorderSide(color: mainColor), backgroundColor: altColor),
         child: Text(
           type,
           style: TextStyle(fontSize: 18, color: mainColor),
-        ),),
+        ),
+      ),
     );
   }
 
@@ -51,7 +54,7 @@ class _OtpState extends State<Otp> {
     return Scaffold(
         body: SafeArea(
       child: Container(
-          color: const Color.fromARGB(255, 135, 137, 192),
+          color: const Color.fromARGB(255, 226, 212, 186),
           height: double.infinity,
           width: double.infinity,
           child: Column(
@@ -70,15 +73,20 @@ class _OtpState extends State<Otp> {
                     const Text(
                       "Reset Password",
                       style: TextStyle(
-                          fontSize: 30, color: Color.fromARGB(255, 8, 9, 10)),
+                          fontSize: 30, color: Color.fromARGB(255, 101, 50, 57)),
                     )
                   ],
                 ),
-                const Padding(padding: EdgeInsets.symmetric(horizontal: 24, vertical: 7), child:  Text("Enter the 6-digit code sent to your email. \nWe’ve sent a 6-digit verification code to your registered email. Please enter the code below to verify your account.",style: TextStyle(fontWeight: FontWeight.w600),)),
-                OtpTextField(numberOfFields: 6, showFieldAsBox: true, borderColor: const Color(0x0008090a),),
+                const Padding(padding: EdgeInsets.symmetric(horizontal: 24, vertical: 7), child:  Text("Enter the 6-digit code sent to your email. \nWe’ve sent a 6-digit verification code to your registered email. Please enter the code below to verify your account.",style: TextStyle( color: Color.fromARGB(255, 101, 50, 57) ,fontWeight: FontWeight.w600),)),
+                OtpTextField(numberOfFields: 6, borderColor: const Color.fromARGB(255, 101, 50, 57), showFieldAsBox: true),
                 const SizedBox(height: 12,),
-                Center(child: Button("Continue")),
-                Center(child: Button("Back"),)
+                Padding(
+                  padding: const EdgeInsets.only(left: 24, right: 24),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [Button("Continue"), Button("Back")],
+                  ),
+                )
               ])),
     ));
   }

@@ -31,14 +31,14 @@ class _LoginState extends State<Login> {
       child: TextButton(
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Petspage()));
+              MaterialPageRoute(builder: (context) => Petspage(category: null, activeButton: "All", type: "pets",)));
         },
         style: TextButton.styleFrom(
-            side: const BorderSide(color: Color.fromARGB(255, 8, 9, 10)),
-            backgroundColor: const Color.fromARGB(255, 244, 250, 255)),
+            side: const BorderSide(color: Color.fromARGB(255, 101, 50, 57)),
+            backgroundColor: const Color.fromARGB(255, 204, 199, 185)),
         child: const Text(
           "Continue",
-          style: TextStyle(fontSize: 18, color: Color.fromARGB(255, 8, 9, 10)),
+          style: TextStyle(fontSize: 18, color: Color.fromARGB(255, 101, 50, 57)),
         ),
       ),
     );
@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
             },
             child: Text(otherpage,
                 style:
-                    const TextStyle(color: Color.fromARGB(255, 244, 250, 255))),
+                    const TextStyle(color: Color.fromARGB(255, 101, 50, 57))),
           )
         ],
       ),
@@ -83,7 +83,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
         body: SafeArea(
             child: Container(
-                color: const Color.fromARGB(255, 135, 137, 192),
+                color: const Color.fromARGB(255, 226, 212, 186),
                 height: double.infinity,
                 width: double.infinity,
                 child: Column(
@@ -103,7 +103,7 @@ class _LoginState extends State<Login> {
                             "Login",
                             style: TextStyle(
                                 fontSize: 36,
-                                color: Color.fromARGB(255, 8, 9, 10)),
+                                color: Color.fromARGB(255, 101, 50, 57)),
                           )
                         ],
                       ),

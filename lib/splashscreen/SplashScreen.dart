@@ -18,7 +18,7 @@ class _SplashscreenState extends State<Splashscreen> {
     return Scaffold(
       body: SafeArea(
           child: Container(
-        color: const Color.fromARGB(255, 135, 137, 192),
+        color: const Color.fromARGB(255, 226, 212, 186),
         height: double.infinity,
         width: double.infinity,
         child: TextButton(
@@ -39,8 +39,10 @@ class _SplashscreenState extends State<Splashscreen> {
                 style: TextStyle(
                     fontSize: 36,
                     fontStyle: FontStyle.italic,
-                    color: Color.fromARGB(255, 8, 9, 10)),
-              )
+                    color: Color.fromARGB(255, 101, 50, 57)),
+              ),
+              const SizedBox(height: 200,),
+              const Text("Click anywhere to start", style: TextStyle(color: Color.fromARGB(110, 101, 50, 57)),),
             ],
           ),
         ),
