@@ -34,11 +34,13 @@ class Pet {
 class Owner {
   final int id;
   final String name;
+  final String phonenumber;
   final String emailAddress;
 
   Owner(
       {required this.id,
       required this.name,
+      required this.phonenumber,
       required this.emailAddress});
 }
 
@@ -162,36 +164,43 @@ List<Owner> owners = [
   Owner(
     id: 1,
     name: "John Doe",
+    phonenumber: "+964784243X902",
     emailAddress: "john.doe@example.com",
   ),
   Owner(
     id: 2,
     name: "Jane Smith",
+    phonenumber: "+964784253X902",
     emailAddress: "jane.smith@example.com",
   ),
   Owner(
     id: 3,
     name: "Ali Hassan",
+    phonenumber: "+964784243X972",
     emailAddress: "ali.hassan@example.com",
   ),
   Owner(
     id: 4,
     name: "Sara Ahmed",
+    phonenumber: "+964784243X991",
     emailAddress: "sara.ahmed@example.com",
   ),
   Owner(
     id: 5,
     name: "Michael Brown",
+    phonenumber: "+964784923X902",
     emailAddress: "michael.brown@example.com",
   ),
   Owner(
     id: 6,
     name: "Fatima Jassim",
+    phonenumber: "+964787843X902",
     emailAddress: "fatima.jassim@example.com",
   ),
   Owner(
     id: 7,
     name: "Omar Khalid",
+    phonenumber: "+964782243X964",
     emailAddress: "omar.khalid@example.com",
   ),
 ];
