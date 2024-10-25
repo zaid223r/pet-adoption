@@ -56,7 +56,7 @@ class _PetdetailsState extends State<Petdetails> {
               ],
             ),
             Image(
-              image: AssetImage(pet!.imageUrl),
+              image: AssetImage(pet!.imageUrl[0]),
               height: 300,
             ),
             const SizedBox(
@@ -93,7 +93,6 @@ class _PetdetailsState extends State<Petdetails> {
               ),
             ),
             text("Name: ", pet.owner.name),
-            text("Phone Number: ", pet.owner.phoneNumber),
             text("Email: ", pet.owner.emailAddress)
           ],
         ),

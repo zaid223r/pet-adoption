@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pet_adoption/main.dart';
+import 'package:pet_adoption/pets/AddPet.dart';
 import 'package:pet_adoption/pets/PetDetails.dart';
 
 class Petspage extends StatefulWidget {
-  late final String? category;
-  late final String activeButton;
-  late final String type;
-
   // I learned this here https://youtu.be/l3KnuUmlr-w
   // ignore: prefer_const_constructors_in_immutables
   Petspage({
     super.key,
-    required this.category,
-    required this.activeButton,
-    required this.type,
   });
 
   @override
@@ -21,6 +15,10 @@ class Petspage extends StatefulWidget {
 }
 
 class _PetspageState extends State<Petspage> {
+  String? category;
+  String activeButton = "All";
+  String type = "All";
+
   // ignore: non_constant_identifier_names
   Widget PaddingAll(Widget widget) {
     return Padding(
@@ -33,11 +31,11 @@ class _PetspageState extends State<Petspage> {
   Widget AppBar() {
     return Container(
         height: 60,
-        color: const Color.fromARGB(255, 226, 212, 186),
-        child: const Row(
+        color: const Color.fromARGB(255, 255, 255, 255),
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
@@ -50,10 +48,30 @@ class _PetspageState extends State<Petspage> {
                 )
               ],
             ),
-            Icon(
-              Icons.settings,
-              size: 32,
-              color: Color.fromARGB(255, 8, 9, 10),
+            Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Addpet()));
+                  },
+                  child: const Icon(
+                    Icons.add,
+                    size: 32,
+                    color: Color.fromARGB(255, 8, 9, 10),
+                  ),
+                ),
+                const Icon(
+                  Icons.settings,
+                  size: 32,
+                  color: Color.fromARGB(255, 8, 9, 10),
+                ),
+                const SizedBox(
+                  width: 10,
+                )
+              ],
             )
           ],
         ));
@@ -61,27 +79,29 @@ class _PetspageState extends State<Petspage> {
 
   // ignore: non_constant_identifier_names
   Widget PageHeader() {
-    return SizedBox(
-      height: 160,
-      child: Stack(
-        children: [
-          Container(
-            height: 90,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 175, 122, 109),
-            ),
-          ),
-          const Positioned(
-              bottom: -20,
-              left: 0,
-              right: 0,
-              child: Image(
-                image: AssetImage("images/mainpage.png"),
-                height: 180,
-                width: 180,
-              )),
-        ],
-      ),
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(70), bottomRight: Radius.circular(70)),
+      child: Container(
+          height: 160,
+          width: double.infinity,
+          color: const Color.fromARGB(255, 194, 233, 106),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "${getNumByCatagory(category)} currently",
+                style: const TextStyle(
+                    color: Color.fromARGB(255, 8, 9, 10), fontSize: 28),
+              ),
+              const Text(
+                "available for adoption",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 8, 9, 10), fontSize: 28),
+              )
+            ],
+          )),
     );
   }
 
@@ -91,32 +111,24 @@ class _PetspageState extends State<Petspage> {
         child: TextButton(
             onPressed: () {
               if (name == "All") {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Petspage(
-                            category: null,
-                            activeButton: "All",
-                            type: "pets")));
+                setState(() {
+                  category = null;
+                  activeButton = "All";
+                  type = "pets";
+                });
               } else {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Petspage(
-                            category: name.toLowerCase(),
-                            activeButton: name,
-                            type: name.toLowerCase())));
+                setState(() {
+                  category = name.toLowerCase();
+                  activeButton = name;
+                  type = name.toLowerCase();
+                });
               }
             },
-            style: TextButton.styleFrom(
-                backgroundColor: name != widget.activeButton
-                    ? const Color.fromARGB(255, 226, 212, 186)
-                    : const Color.fromARGB(255, 175, 122, 109),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30))),
-            child: Text(
-              name,
-              style: const TextStyle(color: Color.fromARGB(255, 8, 9, 10)),
+            child: CircleAvatar(
+              backgroundImage: AssetImage("images/${name.toLowerCase()}.png"),
+              backgroundColor: name == activeButton
+                  ? const Color.fromARGB(255, 194, 233, 106)
+                  : const Color.fromARGB(255, 255, 255, 255),
             )));
   }
 
@@ -133,7 +145,7 @@ class _PetspageState extends State<Petspage> {
             Expanded(
                 flex: 4,
                 child: Image(
-                  image: AssetImage(pet.imageUrl),
+                  image: AssetImage(pet.imageUrl[0]),
                   width: 100,
                   height: 100,
                   fit: BoxFit.fill,
@@ -158,11 +170,16 @@ class _PetspageState extends State<Petspage> {
                 flex: 4,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Petdetails(id: pet.id)));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Petdetails(id: pet.id)));
                   },
                   child: const Text(
                     "More details",
-                    style: TextStyle(fontSize: 10),
+                    style: TextStyle(
+                        fontSize: 10,
+                        color: Color.fromARGB(255, 194, 233, 106)),
                   ),
                 ))
           ],
@@ -173,11 +190,11 @@ class _PetspageState extends State<Petspage> {
 
   @override
   Widget build(BuildContext context) {
-    var pets = getByCategory(widget.category);
+    var pets = getByCategory(category);
     return Scaffold(
         body: SafeArea(
             child: Container(
-                color: const Color.fromARGB(255, 226, 212, 186),
+                color: const Color.fromARGB(255, 255, 255, 255),
                 child: Column(children: [
                   AppBar(),
                   PageHeader(),
@@ -193,10 +210,6 @@ class _PetspageState extends State<Petspage> {
                       child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        Text(
-                          "All ${widget.type.toLowerCase()} available",
-                          style: const TextStyle(fontSize: 32),
-                        ),
                         for (var pet in pets) PaddingAll(PetRecord(pet)),
                       ],
                     ),
